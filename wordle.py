@@ -25,7 +25,9 @@ def main():
     position_filtered = [
         word for word in blacklisted
         if all(
-            letter == '*' or letter == word[index]
+            letter == '*' or
+            (letter.islower() and letter == word[index]) or
+            (letter.isupper() and letter.lower() != word[index])
             for index, letter in enumerate(args.positions)
         )
     ]
